@@ -22,8 +22,8 @@ parts:
         plugin: autotools2
         source-type: git
         source: https://code.qt.io/qt/qt5.git
-        source-tag: "v5.8.0"
-        #source-branch: 5.7.1
+        #source-tag: "v5.8.0"
+        source-branch: 5.7.1
         build-attributes: ["no-system-libraries"]
         after: [qt-dependencies]
         configflags:        # config flags: for arm64, -opengl es2 platform linux-g++
@@ -197,9 +197,33 @@ parts:
             - zlib1g
             - libdouble-conversion1v5
             - libpulse0
-
+    ecm:
+        plugin: cmake
+        source-type: git
+        source: https://github.com/KDE/extra-cmake-modules.git
+        source-tag: "v5.32.0"
+        build-attributes: ["no-system-libraries"]
+        after: [qt]
+        configflags:        # config flags: for arm64, -opengl es2 platform linux-g++
+            #- -DCMAKE_PREFIX_PATH=$SNAPCRAFT_STAGE/lib/qt5/lib/cmake/
+            - -DCMAKE_PREFIX_PATH=$SNAPCRAFT_STAGE/lib/qt5/lib/cmake/
+            - -DCMAKE_BUILD_TYPE=Release
+            - -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL/usr/
+    kauth:
+        plugin: cmake
+        source-type: git
+        source: https://github.com/KDE/kauth.git
+        source-tag: "v5.32.0"
+        build-attributes: ["no-system-libraries"]
+        after: [qt]
+        configflags:        # config flags: for arm64, -opengl es2 platform linux-g++
+            #- -DCMAKE_PREFIX_PATH=$SNAPCRAFT_STAGE/lib/qt5/lib/cmake/
+            -$SNAPCRAFT_PART_INSTALL/usr/
+            - -DCMAKE_PREFIX_PATH=$SNAPCRAFT_STAGE/lib/qt5/lib/cmake/
+            - -DCMAKE_BUILD_TYPE=Release
+#            - -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL/usr/
     subtitlecomposer:
-      after: [qt]
+      after: [qt, ecm, kauth]
       source: https://github.com/maxrd2/subtitlecomposer.git
       source-type: git
       plugin: cmake
@@ -210,8 +234,9 @@ parts:
         - -DCMAKE_INSTALL_PREFIX=/
         - -DCMAKE_INSTALL_LIBDIR=lib/qt5/lib
         - -DKDE_INSTALL_QMLDIR=/lib/qt5/qml
-        - -DECM_DIR=/usr/share/ECM/cmake
+        - -DECM_DIR=$SNAPCRAFT_STAGE/usr/share/ECM/cmake
       build-packages:
+          - extra-cmake-modules
           - build-essential
           - cmake
           - kdelibs5-dev
