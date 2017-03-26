@@ -1,4 +1,6 @@
 
+subtitlecomposer snap app
+
 This is an unfinished work, and it does not currently work ...
 
 based on:
