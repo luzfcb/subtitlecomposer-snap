@@ -10,6 +10,10 @@ env:
   - REPO=luzfcb/subtitlecomposer_builder
 
 before_install:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq docker-ce libnetfilter-queue-dev libpcap-dev iptables-dev
   - sudo rm /usr/local/bin/docker-compose
   - sudo -H pip install "docker-compose==$DOCKER_COMPOSE_VERSION"
 script:
