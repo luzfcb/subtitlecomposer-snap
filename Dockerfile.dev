@@ -5,7 +5,8 @@ RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted univer
     && echo "deb http://archive.neon.kde.org/user xenial main" >> /etc/apt/sources.list.d/neon.list \
     && echo "deb-src http://archive.neon.kde.org/user xenial main" >> /etc/apt/sources.list.d/neon.list \
     && apt-get update && apt-get -y install wget && wget -q -O - http://archive.neon.kde.org/public.key | apt-key add - \
-    && apt-get update && apt-get -y dist-upgrade && apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get -y build-dep qtbase5-dev
+    && apt-get update && apt-get -y dist-upgrade && apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get -y build-dep qtbase5-dev \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
     
 # Dependencies for ALL KDE applications.
 RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install \
@@ -250,7 +251,7 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes ins
     xserver-xorg-input-wacom \
     xsltproc \
     xwayland \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 RUN mkdir -p /var/run/sshd
 #RUN groupadd -g 1000 jenkins
