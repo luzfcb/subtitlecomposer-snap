@@ -1,6 +1,7 @@
 sudo: required
+language: python
 services:
-- docker
+  - docker
 env:
   global:
   - secure: lZt+7kRPKArMa9vGNmRpQjFZw92zn1ii+VajJw0elNIVykndCqP2hH76sArCw7KEOt8IbPnB0oTIpqd2T+26zNPO50hQT73SoGF9RAoz/IMK+qVlqcNXlieN838GOE9jJnsaZnNG+QpAAnscc3i0laDOpPa0agjmBjPojUhKV90pHKI/573o/J4NzsUbDVWhNHGwIP38r9LDKTcayy0IbQ8yLk/cTYVCZj8KOljtYyhWsTTqInMLSkn8Lk5/xzaqf86YiOOl5IblGpZa03h6K62HKagBxLpcMBUqCxjAG7PePiJ8kJb2FeoJR+jO0tMMG9GtOm5lF2evej6iLKSk99Rsr7l4YiWkDPkkOZA+AzKxGmbYftZ0VTQ7/Eb0NiT2sulI/TpWqd7+Tf7TlzlRxy51nkxQBWMrBXS+8S9tJqJjiwRBdbsc9VWqFgKDGLDpTsn48jEmjYzHPCuUyGlZ8oJzqs5ecdapNJJ1gp2MPVcYpoPzHcfKq9Zxry55BITnAQkgao69xAZmPbk50o7przZxo9EFnXsNSaUN9RnX4q/OEJVjfTlRMEYfg6cDYkij2wlt+x+BC9ePKcXESpy/u1o0W1zm7oc2n/R+Oc68vH4uEOWfAB1V/PzSxVq7bPcUQQpzVdAU48i9eYAl4T2jKJeJPezaIT89FA/rPvklzuY=
@@ -15,7 +16,7 @@ script:
   - docker build -t $IMAGE_NAME -t $REPO:$TAG -f Dockerfile .
   
 
- after_success:
+after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT $REPO:$TRAVIS_BUILD_NUMBER

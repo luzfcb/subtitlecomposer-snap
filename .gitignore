@@ -162,5 +162,10 @@ CMakeLists.txt.user*
 
 
 # End of https://www.gitignore.io/api/python,qt,c++
+
+
 prime/
 stage/
+
+
+.directory
