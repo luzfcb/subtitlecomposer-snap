@@ -1,0 +1,11 @@
+#!/bin/bash
+
+WORK_DIR="$(dirname "$0")"
+PROJECT_DIR="$(dirname "$WORK_DIR")"
+
+# shellcheck source=scripts/__dependencies_checks
+. "${WORK_DIR}/__dependencies_checks"
+
+cd "${PROJECT_DIR}"
+
+docker-compose -f docker-compose.yml --verbose build

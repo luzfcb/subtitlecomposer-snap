@@ -1,0 +1,33 @@
+
+# set PATH so it includes user's private bin directories
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+current_user="${2:-$(whoami)}"
+
+docker >/dev/null 2>&1 || {
+    cat <<-EOF >&2
+		Docker is not installed. Please, install it by following the documentation for your operating system.
+		
+		https://docs.docker.com/engine/installation/#platform-support-matrix
+	EOF
+    exit 1;
+}
+
+docker-compose version >/dev/null 2>&1 || {
+    cat <<-EOF >&2
+		Docker Compose is not installed. Please, install it by following the documentation for your operating system.
+		
+		https://docs.docker.com/compose/install/
+	EOF
+    exit 1;
+}
+
+if ! id -nG "${current_user}" | grep &>/dev/null '\bdocker\b'; then
+    cat <<-EOF >&2
+		Please add your user to the docker linux group by running the command below, and then do the logoff and login and run this command again.
+		
+		sudo usermod -aG docker \$(whoami)
+	EOF
+    exit 1;
+fi
+

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+WORK_DIR="$(dirname "$0")"
+PROJECT_DIR="$(dirname "$WORK_DIR")"
+
+# shellcheck source=scripts/__dependencies_checks
+. "${WORK_DIR}/__dependencies_checks"
+
+
+CONTAINER_NAME=subtitlecomposer_builder
+CONTAINER_ID=$(docker ps --filter "name=${CONTAINER_NAME}" --quiet)
+if [[ ! -z  $CONTAINER_ID ]]; then
+  echo "Connecting to docker container ${CONTAINER_NAME}:${CONTAINER_ID}"
+  docker attach $CONTAINER_NAME
+else
+  echo "Docker container ${CONTAINER_NAME} does not seem to be running. Start it with './scripts/up'"
+fi
+
+
+

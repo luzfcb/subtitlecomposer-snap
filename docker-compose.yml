@@ -1,0 +1,15 @@
+version: '3.0'
+services:
+  subtitlecomposer_builder:
+    tty: true
+    stdin_open: true
+    container_name: subtitlecomposer_builder
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: subtitlecomposer_builder
+    volumes:
+      - .:/app_src:rw
+    #ports:
+      #- 33412:33411
+
