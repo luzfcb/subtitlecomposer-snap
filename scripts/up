@@ -8,4 +8,4 @@ PROJECT_DIR="$(dirname "$WORK_DIR")"
 
 cd "${PROJECT_DIR}"
 
-docker-compose -f docker-compose.yml --verbose up --build --remove-orphans  --no-recreate
+docker-compose -f docker-compose.yml up --build --remove-orphans  --no-recreate
