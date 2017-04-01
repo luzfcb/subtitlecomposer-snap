@@ -4,10 +4,14 @@ services:
   - docker
 env:
   global:
+  - DOCKER_COMPOSE_VERSION: 1.11.2
   - COMMIT=${TRAVIS_COMMIT::8}
   - IMAGE_NAME=subtitlecomposer_builder
   - REPO=luzfcb/subtitlecomposer_builder
 
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - sudo -H pip install "docker-compose==$DOCKER_COMPOSE_VERSION"
 script:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then 
     export TAG="latest"; else export TAG="$TRAVIS_BRANCH"; 
