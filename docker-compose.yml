@@ -7,7 +7,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: subtitlecomposer_builder
+      args: 
+        - "CONTAINER_USER=${USER}"
+    image: luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
     volumes:
       - .:/app_src:rw
     #ports:
