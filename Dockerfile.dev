@@ -2,7 +2,7 @@ FROM luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
 
 ARG CONTAINER_USER
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install snapcrapft \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install snapcraft \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Add non-root user for container but give it sudo access.
