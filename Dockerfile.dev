@@ -21,4 +21,5 @@ USER ${CONTAINER_USER}
 
 WORKDIR /app_src
 
-# CMD ["/bin/bash"]
+CMD ["/bin/bash"]
+
