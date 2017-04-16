@@ -58,45 +58,58 @@ parts:
         - "-DBUILD_TESTING=OFF"
         - "-DKDE_SKIP_TEST_SETTINGS=ON"
     build-packages:
-        - extra-cmake-modules
         - build-essential
         - cmake
+        - debhelper
+        - extra-cmake-modules
+        - git
         - kdelibs5-dev
         - kross-dev
-        - libphonon4qt5-dev
         - libglib2.0-dev
+        - libgstreamer1.0-dev
         - libgstreamer-plugins-base1.0-dev
+        - libkf5xmlgui-dev
+        - libmpv-dev
+        - libphonon4qt5-dev
+        - libphonon4qt5experimental-dev
+        - libpocketsphinx3
+        - libpocketsphinx-dev
+        - libsphinxbase3
+        - libsphinxbase-dev
         - libx11-dev
         - libxine2-dev
         - libxml2-dev
+        - mplayer
+        - mpv
         - pkg-kde-tools
-    #stage-packages:
-        #- libc6
-        #- libgcc1
-        #- libglib2.0-0
-        #- libgstreamer-plugins-base1.0-0
-        #- libgstreamer1.0-0
-        #- libicu55
-        #- libkf5codecs5
-        #- libkf5completion5
-        #- libkf5configcore5
-        #- libkf5configgui5
-        #- libkf5configwidgets5
-        #- libkf5coreaddons5
-        #- libkf5i18n5
-        #- libkf5kiocore5
-        #- libkf5kiofilewidgets5
-        #- libkf5kiowidgets5
-        #- libkf5krosscore5
-        #- libkf5sonnetcore5
-        #- libkf5sonnetui5
-        #- libkf5textwidgets5
-        #- libkf5widgetsaddons5
-        #- libkf5xmlgui5
-        #- libmpv1
-        #- libphonon4qt5-4
-        #- libqt5core5a
-        #- libqt5gui5
-        #- libqt5widgets5
-        #- libstdc++6
-
+        - qtbase5-dev
+    stage-packages:
+        - mplayer
+        - libc6
+        - libglib2.0-0
+        - libgstreamer-plugins-base1.0-0
+        - libgstreamer1.0-0
+        - libicu55
+        - libkf5codecs5
+        - libkf5completion5
+        - libkf5configcore5
+        - libkf5configgui5
+        - libkf5configwidgets5
+        - libkf5coreaddons5
+        - libkf5i18n5
+        - libkf5kiocore5
+        - libkf5kiofilewidgets5
+        - libkf5kiowidgets5
+        - libkf5krosscore5
+        - libkf5sonnetcore5
+        - libkf5sonnetui5
+        - libkf5textwidgets5
+        - libkf5widgetsaddons5
+        - libkf5xmlgui5
+        - libmpv1
+        - libphonon4qt5-4
+        - libqt5core5a
+        - libqt5gui5
+        - libqt5widgets5
+        - libstdc++6
+        - libgtk2.0-0
