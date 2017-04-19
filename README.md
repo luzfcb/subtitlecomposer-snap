@@ -19,11 +19,6 @@ sudo apt-get update && sudo apt-get install git snapcraft --yes
 git clone https://github.com/luzfcb/subtitlecomposer-snap.git
 cd subtitlecomposer-snap
 
-
-snapcraft build
-# waiting for a long time
-
-# after, generate the snap package
-snapcraft snap
+snapcraft
 ```
 
