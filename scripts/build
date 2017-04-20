@@ -15,7 +15,7 @@ set -x
 
 cd "${PROJECT_DIR}"
 docker pull luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
-docker-compose -f docker-compose.yml build --no-cache --verbose ${CONTAINER_NAME}
+#docker-compose -f docker-compose.yml build --no-cache --verbose ${CONTAINER_NAME}
 
 # disable command on stdout
 set +x
