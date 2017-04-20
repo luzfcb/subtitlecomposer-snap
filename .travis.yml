@@ -7,6 +7,7 @@ cache:
   - $CACHE_DIR
 env:
   global:
+  - CONTAINER_NAME=subtitlecomposer_builder
   - DOCKER_ORGANIZATION_NAME=luzfcb
   - DOCKER_IMAGE_NAME=ubuntu-xenial-kde5-neon-stable-compile-environment
   - DOCKER_IMAGE_VERSION=latest
@@ -15,8 +16,7 @@ env:
   - CACHE_FILE_BASE_DOCKER_IMAGE=${CACHE_DIR}/${DOCKER_IMAGE_NAME}.tar.gz
   - DOCKER_COMPOSE_VERSION=1.12.0
   - COMMIT=${TRAVIS_COMMIT::8}
-  - IMAGE_NAME=subtitlecomposer_builder
-  - REPO=luzfcb/subtitlecomposer_builder
+
 before_install:
 - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu
@@ -31,8 +31,9 @@ before_install:
 script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then export TAG="latest"; else export TAG="$TRAVIS_BRANCH";
   fi
-- docker pull luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
-- if [ ! -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then docker save ${DOCKER_IMAGE_FULL_NAME} | gzip > ${CACHE_FILE_BASE_DOCKER_IMAGE}; fi
+- docker-compose -f docker-compose.yml build --no-cache --verbose ${CONTAINER_NAME}
+#- docker pull luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
+#- if [ ! -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then docker save ${DOCKER_IMAGE_FULL_NAME} | gzip > ${CACHE_FILE_BASE_DOCKER_IMAGE}; fi
 #- scripts/build
 #- scripts/up
 #- scripts/compile_snap
