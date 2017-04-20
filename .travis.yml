@@ -36,9 +36,9 @@ script:
 - docker-compose -f docker-compose.yml build --no-cache ${CONTAINER_NAME}
 #- docker pull luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
 #- if [ ! -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then docker save ${DOCKER_IMAGE_FULL_NAME} | gzip > ${CACHE_FILE_BASE_DOCKER_IMAGE}; fi
-#- scripts/build
-#- scripts/up
-#- scripts/compile_snap
+- scripts/build
+- scripts/up
+- scripts/compile_snap
 
 after_success:
 - ls -la
