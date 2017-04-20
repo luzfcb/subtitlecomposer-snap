@@ -26,8 +26,8 @@ before_install:
 - sudo rm /usr/local/bin/docker-compose
 - sudo -H pip install "docker-compose==$DOCKER_COMPOSE_VERSION"
 - if [ -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then gunzip -c ${CACHE_FILE_BASE_DOCKER_IMAGE} | docker load; fi
-install:
-- if [ ! -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then docker save ${DOCKER_IMAGE_FULL_NAME} | gzip > ${CACHE_FILE_BASE_DOCKER_IMAGE}; fi
+
+
 script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then export TAG="latest"; else export TAG="$TRAVIS_BRANCH";
   fi
@@ -35,6 +35,7 @@ script:
 - scripts/up
 - scripts/compile_snap
 
+- if [ ! -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then docker save ${DOCKER_IMAGE_FULL_NAME} | gzip > ${CACHE_FILE_BASE_DOCKER_IMAGE}; fi
 after_success:
 - ls -la
 
