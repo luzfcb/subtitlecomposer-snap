@@ -25,14 +25,15 @@ before_install:
   -s`-`uname -m` > docker-compose
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
+- mkdir -p deploy_files/
+- ls -la
 script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then export TAG="latest"; else export TAG="$TRAVIS_BRANCH";
   fi
 - scripts/build
 - scripts/up
 - scripts/compile_snap
-- mkdir -p deploy_files/
-- mv *.snap deploy_files/
+- sudo mv *.snap deploy_files/
 after_success:
 - ls -la
 deploy:
@@ -41,8 +42,10 @@ deploy:
   secret_access_key:
     secure: VKH2leH7uz3Pvme/MvXxL1oAUJix+EsWiFZyO/h5/7Ee8k7ijCJdQkicYQbaHFNqVfIRcqhI7wHZ5PXsGDm3sxO7AcOywAHPlezgfAYl/hDXSI2i2MLfb93GakDZJCyNPdRYO2f4E/Wdv998LnpvCNApYCph8DvOzOpS5/uqs5VGsMDLh8qbH5hWCJdWdDLMK/Hwi/QulINHkziUs810n1vxLjCoEix26LTMivm8dFPS9/++bOcEXpGJD/qlN3VlFj5pFaZGBWS2QFnX9g4KQCtJZ0J7BONFVHuywEDkEU8LTnJjyDNIEbfpxWkpe+T+rJPyIEzR2V3hwuVGcJnLXUoLRekCiqbYV/M/eKPRJM3cnPjggALDnkWUQm6LX5fNViROwHqrDSyxm9kX8q13zKkAnRgtUGTwGPLHpUbXl1HaigeRQjj3BlbfKjsY4NQuCEEdsMp0BHX5NrBTaBgv/KXS6ediK7xATMhZWAQbrrxdjq+BKEemDrR+b4dNu1FAIYHLsqbm3G4Jx7n1k4LizIP/kVW+lxGljBTcM0xBUFRn6Sgp32sCT8eMKQ8Modw/LGqLlZxDT/9EplUFUoyRIbBx/GnkqQKBjJtxanJWmuGZvCRSO4+XZvQDZIcnN4ewwP82B8BDNulQm1xI3/aBqAOtobX1wuRJZVeX9GSm9ic=
   bucket: subtitlecomposer-snap
+  region: sa-east-1
   skip_cleanup: true
-  local-dir: deploy_files/
+  local-dir: deploy_files
+  upload-dir: travis-builds
   acl: public_read
   on:
     repo: luzfcb/subtitlecomposer-snap
