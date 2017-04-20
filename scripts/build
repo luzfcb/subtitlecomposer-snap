@@ -7,6 +7,9 @@ export PROJECT_DIR="$(realpath "$PROJECT_DIR")"
 # shellcheck source=scripts/__dependencies_checks
 . "${WORK_DIR}/__dependencies_checks"
 
+# shellcheck source=scripts/__container_name_and_id
+. "${WORK_DIR}/__container_name_and_id"
+
 cd "${PROJECT_DIR}"
 
-docker-compose -f docker-compose.yml build --no-cache --verbose
+docker-compose -f docker-compose.yml build --no-cache --verbose subtitlecomposer_builder
