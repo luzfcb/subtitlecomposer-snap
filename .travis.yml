@@ -33,7 +33,7 @@ before_install:
 script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then export TAG="latest"; else export TAG="$TRAVIS_BRANCH";
   fi
-- docker-compose -f docker-compose.yml build --no-cache --verbose ${CONTAINER_NAME}
+- docker-compose -f docker-compose.yml build --no-cache ${CONTAINER_NAME}
 #- docker pull luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
 #- if [ ! -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then docker save ${DOCKER_IMAGE_FULL_NAME} | gzip > ${CACHE_FILE_BASE_DOCKER_IMAGE}; fi
 #- scripts/build
