@@ -9,6 +9,12 @@ echo ${PROJECT_DIR}
 # shellcheck source=scripts/__dependencies_checks
 . "${WORK_DIR}/__dependencies_checks"
 
+# show command on stdout
+set -x 
+
 cd "${PROJECT_DIR}"
 
 docker-compose -f docker-compose.yml up --remove-orphans --no-recreate -d
+
+# disable command on stdout
+set +x
