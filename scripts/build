@@ -10,6 +10,12 @@ export PROJECT_DIR="$(realpath "$PROJECT_DIR")"
 # shellcheck source=scripts/__container_name_and_id
 . "${WORK_DIR}/__container_name_and_id"
 
+# show command on stdout
+set -x 
+
 cd "${PROJECT_DIR}"
 docker pull luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
 docker-compose -f docker-compose.yml build --no-cache --verbose ${CONTAINER_NAME}
+
+# disable command on stdout
+set +x
