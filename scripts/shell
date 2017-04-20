@@ -12,7 +12,13 @@ export PROJECT_DIR="$(realpath "$PROJECT_DIR")"
 
 if [[ ! -z  $CONTAINER_ID ]]; then
   echo "Connecting to docker container ${CONTAINER_NAME}:${CONTAINER_ID}"
+  # show command on stdout
+  set -x 
+  
   docker attach $CONTAINER_ID
+  
+  # disable command on stdout
+  set +x
 else
   echo "Docker container ${CONTAINER_NAME} does not seem to be running. Start it with './scripts/up'"
 fi
