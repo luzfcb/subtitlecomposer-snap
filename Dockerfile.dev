@@ -2,22 +2,24 @@ FROM luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
 
 ARG CONTAINER_USER
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install snapcraft \
-    && rm -rf /var/lib/apt/lists/* && apt-get clean
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install snapcraft sudo \
+#    && rm -rf /var/lib/apt/lists/* 
+    && apt-get clean
 
 # Add non-root user for container but give it sudo access.
 # Password is the same as the username
 RUN useradd -m ${CONTAINER_USER} && \
     echo ${CONTAINER_USER}:${CONTAINER_USER} | chpasswd && \
     cp /etc/sudoers /etc/sudoers.bak && \
-    echo "${CONTAINER_USER}  ALL=(root) ALL" >> /etc/sudoers
+    echo "${CONTAINER_USER}  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 # Make bash the default shell (useful for when using tmux in the container)
 RUN chsh --shell /bin/bash ${CONTAINER_USER}
 
 # force snapcraft accept kde neon
 RUN sed -i -e 's/_DEB_BASED_PLATFORM \= \[/_DEB_BASED_PLATFORM = [\"neon\"\,/g' /usr/lib/python3/dist-packages/snapcraft//internal/repo/_platform.py
 
-USER ${CONTAINER_USER}
+
+#USER ${CONTAINER_USER}
 
 WORKDIR /app_src
 

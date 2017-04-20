@@ -9,9 +9,17 @@ services:
       dockerfile: Dockerfile.dev
       args: 
         - "CONTAINER_USER=${USER}"
-    image: luzfcb/ubuntu-xenial-kde5-neon-stable-compile-environment:latest
+    image: subtitlecomposer_builder_image
     volumes:
-      - .:/app_src:rw
+      - sourcecode:/app_src:rw
     #ports:
       #- 33412:33411
 
+volumes:
+  sourcecode: 
+    driver_opts:
+      type: none
+      device: ${PROJECT_DIR}
+      o: bind
+
+    

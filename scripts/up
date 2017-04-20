@@ -2,10 +2,13 @@
 
 WORK_DIR="$(dirname "$0")"
 PROJECT_DIR="$(dirname "$WORK_DIR")"
+export PROJECT_DIR="$(realpath "$PROJECT_DIR")"
+
+echo ${PROJECT_DIR}
 
 # shellcheck source=scripts/__dependencies_checks
 . "${WORK_DIR}/__dependencies_checks"
 
 cd "${PROJECT_DIR}"
 
-docker-compose -f docker-compose.yml up --build --remove-orphans  --no-recreate
+docker-compose -f docker-compose.yml up --remove-orphans --no-recreate -d

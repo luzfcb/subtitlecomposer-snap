@@ -1,0 +1,3 @@
+CONTAINER_NAME=subtitlecomposer_builder
+CONTAINER_ID=$(docker ps --filter "name=${CONTAINER_NAME}" --quiet)
+
