@@ -12,4 +12,4 @@ export PROJECT_DIR="$(realpath "$PROJECT_DIR")"
 
 cd "${PROJECT_DIR}"
 
-docker-compose -f docker-compose.yml build --no-cache --verbose subtitlecomposer_builder
+docker-compose -f docker-compose.yml build --no-cache --verbose ${CONTAINER_NAME}
