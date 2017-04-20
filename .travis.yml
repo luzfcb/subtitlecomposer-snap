@@ -2,8 +2,17 @@ sudo: required
 language: python
 services:
 - docker
+cache:
+  directories:
+  - $CACHE_DIR
 env:
   global:
+  - DOCKER_ORGANIZATION_NAME=luzfcb
+  - DOCKER_IMAGE_NAME=ubuntu-xenial-kde5-neon-stable-compile-environment
+  - DOCKER_IMAGE_VERSION=latest
+  - DOCKER_IMAGE_FULL_NAME=${DOCKER_ORGANIZATION_NAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}
+  - CACHE_DIR=$HOME/.cache/docker
+  - CACHE_FILE_BASE_DOCKER_IMAGE=${CACHE_DIR}/${DOCKER_IMAGE_NAME}.tar.gz
   - DOCKER_COMPOSE_VERSION=1.12.0
   - COMMIT=${TRAVIS_COMMIT::8}
   - IMAGE_NAME=subtitlecomposer_builder
@@ -16,6 +25,9 @@ before_install:
 - sudo apt-get install -qq docker-ce libnetfilter-queue-dev libpcap-dev iptables-dev realpath
 - sudo rm /usr/local/bin/docker-compose
 - sudo -H pip install "docker-compose==$DOCKER_COMPOSE_VERSION"
+- if [ -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then gunzip -c ${CACHE_FILE_BASE_DOCKER_IMAGE} | docker load; fi
+install:
+- if [ ! -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then docker save ${DOCKER_IMAGE_FULL_NAME} | gzip > ${CACHE_FILE_BASE_DOCKER_IMAGE}; fi
 script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then export TAG="latest"; else export TAG="$TRAVIS_BRANCH";
   fi
