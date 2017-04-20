@@ -2,9 +2,9 @@ sudo: required
 language: python
 services:
 - docker
-cache:
-  directories:
-  - $CACHE_DIR
+#cache:
+#  directories:
+#  - $CACHE_DIR
 env:
   global:
   - CONTAINER_NAME=subtitlecomposer_builder
@@ -25,7 +25,7 @@ before_install:
 - sudo apt-get install -qq docker-ce libnetfilter-queue-dev libpcap-dev iptables-dev realpath
 - sudo rm /usr/local/bin/docker-compose
 - sudo -H pip install "docker-compose==$DOCKER_COMPOSE_VERSION"
-- if [ -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then gunzip -c ${CACHE_FILE_BASE_DOCKER_IMAGE} | docker load; fi
+#- if [ -f ${CACHE_FILE_BASE_DOCKER_IMAGE} ]; then gunzip -c ${CACHE_FILE_BASE_DOCKER_IMAGE} | docker load; fi
 
 
 script:
