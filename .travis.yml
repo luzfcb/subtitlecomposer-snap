@@ -39,6 +39,7 @@ script:
 - ls -la
 - sudo mv *.snap deploy_files/
 - sudo chown -R $USER deploy_files
+- sudo chmod -R 766 deploy_files/
 - ls -la
 
 after_success:
