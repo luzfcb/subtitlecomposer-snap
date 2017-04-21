@@ -50,6 +50,8 @@ parts:
 #       - bin/qt5-launch
 #       - etc/xdg/qtchooser/snappy-qt5.conf
   subtitlecomposer:
+#    after: [qt5conf]
+    after: [desktop-qt5]
     source: https://github.com/luzfcb/subtitlecomposer.git
     source-type: git
     source-branch: disable-speechplugins
@@ -118,4 +120,4 @@ parts:
 #        - libgtk2.0-0
 #     prime:
 #        - usr/lib/x86_64-linux-gnu/*
-    after: [desktop-qt5]
+
