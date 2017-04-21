@@ -8,7 +8,6 @@ based on:
 https://apachelog.wordpress.com/2016/12/02/snapping-kde-applications/
 
 
-
 ```bash
 sudo apt-get update && sudo apt-get install git snapcraft --yes
 
