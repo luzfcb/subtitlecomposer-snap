@@ -10,13 +10,14 @@ description: |
   Different backends (GStreamer, MPlayer, Phonon or xine) can be used to play
   the realtime video preview which helps to synchronize the subtitles.
 grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: devmode # use 'strict' once you have the right plugs and slots
-#confinement: strict
+#confinement: devmode # use 'strict' once you have the right plugs and slots
+confinement: strict
 
 
 apps:
   subtitlecomposer:
-    command: qt5-launch subtitlecomposer
+#    command: qt5-launch subtitlecomposer
+    command: desktop-launch subtitlecomposer
     plugs:
       - home # give us a dir in the user home
       - x11 # we run with xcb Qt platform for now
@@ -38,15 +39,15 @@ parts:
 #    source-type: git
 #    plugin: autotools
 #    configflags: [--enable-static=no, --prefix=/usr]
-  qt5conf:
-    build-packages: [dpkg-dev]
-    plugin: make
-    source: https://github.com/dplanella/qt5conf
-    source-type: git
-    source-branch: master
-    prime:
-       - bin/qt5-launch
-       - etc/xdg/qtchooser/snappy-qt5.conf
+#  qt5conf:
+#    build-packages: [dpkg-dev]
+#    plugin: make
+#    source: https://github.com/dplanella/qt5conf
+#    source-type: git
+#    source-branch: master
+#    prime:
+#       - bin/qt5-launch
+#       - etc/xdg/qtchooser/snappy-qt5.conf
   subtitlecomposer:
     source: https://github.com/luzfcb/subtitlecomposer.git
     source-type: git
@@ -116,4 +117,4 @@ parts:
 #        - libgtk2.0-0
 #     prime:
 #        - usr/lib/x86_64-linux-gnu/*
-    after: [qt5conf]
+    after: [desktop-qt5]
