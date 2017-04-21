@@ -52,9 +52,9 @@ parts:
   subtitlecomposer:
 #    after: [qt5conf]
     after: [pocketsphinx, desktop-qt5]
-    source: https://github.com/luzfcb/subtitlecomposer.git
+    source: https://github.com/maxrd2/subtitlecomposer.git
     source-type: git
-    source-branch: disable-speechplugins
+    source-branch: master
     plugin: cmake
     configflags:
         - "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
