@@ -1,5 +1,5 @@
 sudo: required
-language: python
+language: ruby
 services:
 - docker
 env:
@@ -33,9 +33,11 @@ script:
 - scripts/build
 - scripts/up
 - scripts/compile_snap
+- ls -la
 - sudo mv *.snap deploy_files/
 after_success:
 - ls -la
+- ls -la deploy_files/
 deploy:
   provider: s3
   access_key_id: AKIAI5KHA4EBHMJHHSEQ
