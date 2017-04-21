@@ -1,5 +1,5 @@
 name: subtitlecomposer # you probably want to 'snapcraft register <name>'
-version: '0.6.4-disabled-speechplugins+git' # just for humans, typically '1.2+git' or '1.3.2'
+version: '0.6.4+git' # just for humans, typically '1.2+git' or '1.3.2'
 summary: Subtitles editor for KDE # 79 char long summary
 description: |
   A text-based subtitles editor for KDE supporting basic operations (text,
@@ -29,17 +29,17 @@ apps:
       - pulseaudio # sound notifications
 
 parts:
-#  sphinxbase:
-#    source: https://github.com/cmusphinx/sphinxbase.git
-#    source-type: git
-#    plugin: autotools
-#    configflags: [--enable-static=no, --prefix=/usr]
-#  pocketsphinx:
-#    after: [sphinxbase]
-#    source: https://github.com/cmusphinx/pocketsphinx.git
-#    source-type: git
-#    plugin: autotools
-#    configflags: [--enable-static=no, --prefix=/usr]
+  sphinxbase:
+    source: https://github.com/cmusphinx/sphinxbase.git
+    source-type: git
+    plugin: autotools
+    configflags: [--enable-static=no, --prefix=/usr]
+  pocketsphinx:
+    after: [sphinxbase]
+    source: https://github.com/cmusphinx/pocketsphinx.git
+    source-type: git
+    plugin: autotools
+    configflags: [--enable-static=no, --prefix=/usr]
 #  qt5conf:
 #    build-packages: [dpkg-dev]
 #    plugin: make
@@ -51,7 +51,7 @@ parts:
 #       - etc/xdg/qtchooser/snappy-qt5.conf
   subtitlecomposer:
 #    after: [qt5conf]
-    after: [desktop-qt5]
+    after: [pocketsphinx, desktop-qt5]
     source: https://github.com/luzfcb/subtitlecomposer.git
     source-type: git
     source-branch: disable-speechplugins
@@ -78,10 +78,10 @@ parts:
         - libmpv-dev
         - libphonon4qt5-dev
         - libphonon4qt5experimental-dev
-        - libpocketsphinx3
-        - libpocketsphinx-dev
-        - libsphinxbase3
-        - libsphinxbase-dev
+#        - libpocketsphinx3
+#        - libpocketsphinx-dev
+#        - libsphinxbase3
+#        - libsphinxbase-dev
         - libx11-dev
         - libxine2-dev
         - libxml2-dev
