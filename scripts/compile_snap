@@ -9,9 +9,12 @@ PROJECT_DIR="$(dirname "$WORK_DIR")"
 # shellcheck source=scripts/__container_name_and_id
 . "${WORK_DIR}/__container_name_and_id"
 
+fix_permission="sudo chown -hR $USER:$USER"
+
 if [[ ! -z  $CONTAINER_ID ]]; then
   echo "Connecting to docker container ${CONTAINER_NAME}:${CONTAINER_ID}"
   docker exec $CONTAINER_ID snapcraft
+  docker exec $CONTAINER_ID "${fix_permission}"
   exit $?;
 else
   echo "Docker container ${CONTAINER_NAME} does not seem to be running. Start it with './scripts/up'"
