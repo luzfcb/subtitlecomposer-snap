@@ -14,6 +14,7 @@ env:
   - DOCKER_COMPOSE_VERSION=1.12.0
   - COMMIT=${TRAVIS_COMMIT::8}
 before_install:
+- gem install dpl
 - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu
   $(lsb_release -cs) stable"
