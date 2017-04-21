@@ -34,7 +34,9 @@ script:
 - scripts/up
 - scripts/compile_snap
 - ls -la
-- sudo mv *.snap deploy_files/
+- sudo chown -R $USER parts prime stage deploy_files *.snap
+- mv *.snap deploy_files/
+
 after_success:
 - ls -la
 - ls -la deploy_files/

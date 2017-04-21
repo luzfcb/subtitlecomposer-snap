@@ -20,7 +20,7 @@ RUN sed -i -e 's/_DEB_BASED_PLATFORM \= \[/_DEB_BASED_PLATFORM = [\"neon\"\,/g' 
 
 WORKDIR /app_src
 
-USER ${CONTAINER_USER}
+#USER ${CONTAINER_USER}
 
 CMD ["/bin/bash"]
 
