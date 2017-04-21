@@ -18,10 +18,9 @@ RUN chsh --shell /bin/bash ${CONTAINER_USER}
 # force snapcraft accept kde neon
 RUN sed -i -e 's/_DEB_BASED_PLATFORM \= \[/_DEB_BASED_PLATFORM = [\"neon\"\,/g' /usr/lib/python3/dist-packages/snapcraft//internal/repo/_platform.py
 
-
-#USER ${CONTAINER_USER}
-
 WORKDIR /app_src
+
+USER ${CONTAINER_USER}
 
 CMD ["/bin/bash"]
 
