@@ -13,7 +13,7 @@ grade: devel # must be 'stable' to release into candidate/stable channels
 #confinement: devmode # use 'strict' once you have the right plugs and slots
 confinement: strict
 
-icon: gui/128-apps-subtitlecomposer.png
+icon: 128-apps-subtitlecomposer.png
 
 apps:
   subtitlecomposer:
