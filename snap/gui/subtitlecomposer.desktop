@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Subtitlecomposer Snap
+Exec=qt5-launch subtitlecomposer
+Type=Application
