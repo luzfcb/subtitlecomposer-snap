@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/luzfcb/subtitlecomposer-snap.svg?branch=master)](https://travis-ci.org/luzfcb/subtitlecomposer-snap)
+
 subtitlecomposer snap app
 
 This is an unfinished work, and it does not currently work 100%...
