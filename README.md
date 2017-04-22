@@ -1,7 +1,7 @@
 
 subtitlecomposer snap app
 
-This is an unfinished work, and it does not currently work ...
+This is an unfinished work, and it does not currently work 100%...
 
 based on:
 
@@ -25,12 +25,33 @@ sudo mv docker-compose /usr/local/bin
 
 ```
 
-Create the snap package
+### Steps to create the snap package:
+
+
+#### download base KDE/QT docker image (3GB) and create snap package compile environment (subtitlecomposer_builder)
 
 ```bash
 scripts/build
+```
+
+#### start docker container, bind the current dir inside the container
+```bash
 scripts/up
+```
+
+#### generate the snap package
+```bash
 scripts/compile_snap
+```
+
+#### Unbind current dir and delete the container subtitlecomposer_builder
+```bash
+scripts/down
+```
+
+#### Connect to subtitlecomposer_builder container and open bash inside the container
+```bash
+scripts/shell
 ```
 
 ### build directily on KDE Neon user LTS
