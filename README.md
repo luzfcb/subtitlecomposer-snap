@@ -5,11 +5,6 @@ subtitlecomposer snap app
 
 This is an unfinished work, and it does not currently work 100%...
 
-based on:
-
-https://apachelog.wordpress.com/2016/12/02/snapping-kde-applications/
-
-
 
 ### build with docker
 Install docker-ce, docker-compose
@@ -74,3 +69,7 @@ cd subtitlecomposer-snap
 snapcraft
 ```
 
+
+links:
+
+https://apachelog.wordpress.com/2016/12/02/snapping-kde-applications/
