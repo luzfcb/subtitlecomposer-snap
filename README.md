@@ -57,6 +57,8 @@ https://neon.kde.org/download
 
 ```bash
 sudo apt-get update && sudo apt-get install git snapcraft realpath --yes
+
+# force snapcraft work on KDE Neon
 sudo sed -i -e 's/_DEB_BASED_PLATFORM \= \[/_DEB_BASED_PLATFORM = [\"neon\"\,/g' /usr/lib/python3/dist-packages/snapcraft//internal/repo/_platform.py
 
 ```
