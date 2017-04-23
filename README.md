@@ -41,6 +41,17 @@ scripts/up
 scripts/compile_snap
 ```
 
+after compile, install the generated snap package
+
+```
+sudo snap install --dangerous --devmode subtitlecomposer_0.6.4+git_amd64.snap
+```
+
+to execute 
+```
+snap run subtitlecomposer
+```
+
 #### Unbind current dir and delete the container subtitlecomposer_builder
 ```bash
 scripts/down
